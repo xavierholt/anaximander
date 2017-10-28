@@ -19,9 +19,11 @@ HEADERS += \
   src/gen/MarbleGenerator.h \
   src/gen/StarOfDavidGenerator.h \
   src/gen/VoronoiGenerator.h \
-  src/gui/MapWindow.h \
+  src/gui/EditPanel.h \
   src/gui/MainPanel.h \
+  src/gui/MapWindow.h \
   src/gui/SidePanel.h \
+  src/gui/StatPanel.h \
   src/gui/bar/BiomeHistogram.h \
   src/gui/bar/ElevationHistogram.h \
   src/gui/bar/RainfallHistogram.h \
@@ -43,9 +45,11 @@ SOURCES += \
   src/gen/MarbleGenerator.cpp \
   src/gen/StarOfDavidGenerator.cpp \
   src/gen/VoronoiGenerator.cpp \
-  src/gui/MapWindow.cpp \
+  src/gui/EditPanel.cpp \
   src/gui/MainPanel.cpp \
+  src/gui/MapWindow.cpp \
   src/gui/SidePanel.cpp \
+  src/gui/StatPanel.cpp \
   src/gui/bar/BiomeHistogram.cpp \
   src/gui/bar/ElevationHistogram.cpp \
   src/gui/bar/RainfallHistogram.cpp \

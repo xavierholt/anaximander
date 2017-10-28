@@ -20,8 +20,6 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 
-#include <iostream>
-
 namespace Plat
 {
   MapWindow::MapWindow(QWidget* parent): QWidget(parent) {
@@ -31,11 +29,11 @@ namespace Plat
     setLayout(layout);
 
     setWindowTitle("Map Viewer");
-    generate();
+    generate(8, 8);
   }
 
-  void MapWindow::generate() {
-    Map map(8, 8);
+  void MapWindow::generate(int xbits, int ybits) {
+    Map map(xbits, ybits);
 
     genElevation(map);
     genTemperature(map);
@@ -60,7 +58,7 @@ namespace Plat
         if(tile.temperature < A - B) {
           tile.biome = Biome::TUNDRA;
         }
-        if(tile.temperature < A) {
+        else if(tile.temperature < A) {
           if(tile.rainfall < C - D) {
             tile.biome = Biome::TUNDRA;
           }
@@ -68,7 +66,7 @@ namespace Plat
             tile.biome = Biome::BOREAL_FOREST;
           }
         }
-        if(tile.temperature < A + B) {
+        else if(tile.temperature < A + B) {
           if(tile.rainfall < C - D) {
             tile.biome = Biome::TEMPERATE_GRASSLAND;
           }

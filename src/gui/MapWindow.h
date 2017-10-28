@@ -28,7 +28,7 @@ namespace Plat
     void genTemperature(Map& map);
 
   public slots:
-    void generate();
+    void generate(int xbits, int ybits);
     // void load();
     // void save();
 

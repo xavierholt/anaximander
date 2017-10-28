@@ -1,7 +1,6 @@
 #ifndef PLAT_MAPVIEWER_H
 #define PLAT_MAPVIEWER_H
 
-#include <QLabel>
 #include <QScrollArea>
 
 class QImage;

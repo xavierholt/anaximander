@@ -2,6 +2,8 @@
 
 #include "../../map.h"
 
+#include <QLabel>
+
 namespace Plat
 {
   MapViewer::MapViewer(QWidget* parent): QScrollArea(parent) {

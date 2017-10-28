@@ -1,28 +1,22 @@
 #ifndef PLAT_SIDEPANEL_H
 #define PLAT_SIDEPANEL_H
 
-#include <QWidget>
-
-class QPushButton;
+#include <QTabWidget>
 
 namespace Plat
 {
   class Map;
   class MapWindow;
-  class HistogramViewer;
+  class EditPanel;
+  class StatPanel;
 
-  class SidePanel: public QWidget {
+  class SidePanel: public QTabWidget {
     Q_OBJECT
   protected:
-    HistogramViewer*  mBiome;
-    HistogramViewer*  mElevation;
-    HistogramViewer*  mTemperature;
-    HistogramViewer*  mRainfall;
-    QPushButton*      mRegenerate;
+    EditPanel* mEditPanel;
+    StatPanel* mStatPanel;
   public:
-    SidePanel(const MapWindow* window);
-  public slots:
-    void update(const Map& map);
+    SidePanel(MapWindow* window);
   };
 }
 
