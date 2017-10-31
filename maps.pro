@@ -19,6 +19,7 @@ HEADERS += \
   src/gen/MarbleGenerator.h \
   src/gen/StarOfDavidGenerator.h \
   src/gen/VoronoiGenerator.h \
+  src/gen/WorleyGenerator.h \
   src/gui/EditPanel.h \
   src/gui/MainPanel.h \
   src/gui/MapWindow.h \
@@ -45,6 +46,7 @@ SOURCES += \
   src/gen/MarbleGenerator.cpp \
   src/gen/StarOfDavidGenerator.cpp \
   src/gen/VoronoiGenerator.cpp \
+  src/gen/WorleyGenerator.cpp \
   src/gui/EditPanel.cpp \
   src/gui/MainPanel.cpp \
   src/gui/MapWindow.cpp \

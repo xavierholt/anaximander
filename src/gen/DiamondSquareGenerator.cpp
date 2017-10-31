@@ -19,10 +19,9 @@ namespace Plat
     int d = s / 2;
     int m = 0;
 
-    float r;
-    float v;
-    // float z = mNoise / 2;
+    // Ensure that the possible result values cover the range [0, 1] exactly:
     float z = (mNoise == 1)? 0.5 / n : (mNoise - 1) / (pow(mNoise, n) - 1) * 0.5;
+    float v;
 
     std::uniform_real_distribution<float> init(0.5 - z, 0.5 + z);
     for(int x = 0; x < w; x += s) {
@@ -33,7 +32,7 @@ namespace Plat
 
     while(d > 0) {
       z *= mNoise;
-      std::uniform_real_distribution<float> noise(-z, +z);
+      std::uniform_real_distribution<float> r(-z, +z);
 
       for(int x = d; x < w; x += s) {
         for(int y = d; y < h; y += s) {
@@ -41,8 +40,7 @@ namespace Plat
           v += map.get(x + d, y - d);
           v += map.get(x - d, y + d);
           v += map.get(x - d, y - d);
-          r  = noise(mGenerator);
-          map.set(x, y, r + v / 4);
+          map.set(x, y, r(mGenerator) + v / 4);
         }
       }
 
@@ -52,8 +50,7 @@ namespace Plat
           v += map.get(x - d, y + 0);
           v += map.get(x + 0, y + d);
           v += map.get(x + 0, y - d);
-          r  = noise(mGenerator);
-          map.set(x, y, r + v / 4);
+          map.set(x, y, r(mGenerator) + v / 4);
         }
       }
 

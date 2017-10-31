@@ -10,6 +10,7 @@
 #include "../gen/MarbleGenerator.h"
 #include "../gen/StarOfDavidGenerator.h"
 #include "../gen/VoronoiGenerator.h"
+#include "../gen/WorleyGenerator.h"
 
 #include <QHBoxLayout>
 #include <QImage>
@@ -94,8 +95,10 @@ namespace Plat
 
   void MapWindow::genElevation(Map& mMap) {
     Plat::Field map(mMap.xbits(), mMap.ybits());
-    Plat::MarbleGenerator gen(6, 5, 3);
+    // Plat::MarbleGenerator gen(6, 5, 3);
     // Plat::DiamondSquareGenerator gen(4, 0.1);
+    Plat::VoronoiGenerator gen(0.01);
+    // Plat::WorleyGenerator gen(5, 1);
     gen.next(map);
 
     for(int x = 0; x < mMap.width(); ++x) {

@@ -19,7 +19,7 @@ namespace Plat
       for(int y = 0; y < h; ++y) {
         float v = x / mXPeriod + y / mYPeriod;
         float t = map.get(x, y) * mTurbulence;
-        map.set(x, y, fabs(sin((v + t) * M_PI)));
+        map.set(x, y, abs(sin((v + t) * M_PI)));
       }
     }
   }
