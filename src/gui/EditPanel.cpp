@@ -1,6 +1,8 @@
 #include "EditPanel.h"
 
 #include "MapWindow.h"
+#include "gen/DiamondSquareEditor.h"
+#include "../gen/DiamondSquareGenerator.h"
 
 #include <QFormLayout>
 #include <QPushButton>
@@ -10,8 +12,7 @@
 namespace Plat
 {
   EditPanel::EditPanel(MapWindow* window) {
-    mWindow = window;
-    // QVBoxLayout* layout = new QVBoxLayout;
+    QVBoxLayout* layout = new QVBoxLayout;
     QFormLayout* mapdim = new QFormLayout;
 
     mMapWidth = new QSpinBox;
@@ -24,21 +25,25 @@ namespace Plat
     mMapHeight->setMaximum(11);
     mMapHeight->setValue(8);
 
-    mGenerate = new QPushButton("Generate");
+    mGenEditor = new DiamondSquareEditor;
 
     mapdim->addRow("Map Width",  mMapWidth);
     mapdim->addRow("Map Height", mMapHeight);
-    mapdim->addRow(mGenerate);
 
-    // layout->addLayout(mapdim);
-    setLayout(mapdim);
+    layout->addLayout(mapdim);
+    layout->addWidget(mGenEditor);
+    layout->addStretch(1);
+    setLayout(layout);
 
-    connect(mGenerate, SIGNAL(clicked()), this, SLOT(generate()));
+    connect(this, SIGNAL(generated(Field)), window, SLOT(setElevation(Field)));
   }
 
   void EditPanel::generate() {
     int xbits = mMapWidth->value();
     int ybits = mMapHeight->value();
-    mWindow->generate(xbits, ybits);
+
+    Field field(xbits, ybits);
+    mGenEditor->next(field);
+    emit(generated(field));
   }
 }

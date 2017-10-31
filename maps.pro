@@ -56,6 +56,7 @@ SOURCES += \
   src/gui/bar/TemperatureHistogram.cpp \
   src/gui/bar/HistogramViewer.cpp \
   src/gui/gen/DiamondSquareEditor.cpp \
+  src/gui/gen/GeneratorEditor.cpp \
   src/gui/map/BiomeViewer.cpp \
   src/gui/map/ElevationViewer.cpp \
   src/gui/map/RainfallViewer.cpp \

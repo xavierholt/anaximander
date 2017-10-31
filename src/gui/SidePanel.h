@@ -1,7 +1,9 @@
 #ifndef PLAT_SIDEPANEL_H
 #define PLAT_SIDEPANEL_H
 
-#include <QTabWidget>
+#include <QWidget>
+
+class QPushButton;
 
 namespace Plat
 {
@@ -10,11 +12,12 @@ namespace Plat
   class EditPanel;
   class StatPanel;
 
-  class SidePanel: public QTabWidget {
+  class SidePanel: public QWidget {
     Q_OBJECT
   protected:
-    EditPanel* mEditPanel;
-    StatPanel* mStatPanel;
+    EditPanel*   mEditPanel;
+    StatPanel*   mStatPanel;
+    QPushButton* mGenerate;
   public:
     SidePanel(MapWindow* window);
   };

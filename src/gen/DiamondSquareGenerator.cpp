@@ -3,7 +3,7 @@
 namespace Plat
 {
   DiamondSquareGenerator::DiamondSquareGenerator(int size, float noise) {
-    mSize  = 1 << size;
+    mSize  = size;
     mNoise = noise;
   }
 
@@ -11,22 +11,28 @@ namespace Plat
     const int w = map.width();
     const int h = map.height();
 
-    std::uniform_real_distribution<float> init(0.25, 0.75);
-    for(int x = 0; x < w; x += mSize) {
-      for(int y = 0; y < h; y += mSize) {
+    int n = mSize;
+    n = std::min(n, map.xbits());
+    n = std::min(n, map.ybits());
+
+    int s = 1 << n;
+    int d = s / 2;
+    int m = 0;
+
+    float r;
+    float v;
+    // float z = mNoise / 2;
+    float z = (mNoise == 1)? 0.5 / n : (mNoise - 1) / (pow(mNoise, n) - 1) * 0.5;
+
+    std::uniform_real_distribution<float> init(0.5 - z, 0.5 + z);
+    for(int x = 0; x < w; x += s) {
+      for(int y = 0; y < h; y += s) {
         map.set(x, y, init(mGenerator));
       }
     }
 
-    int s = mSize;
-    int d = s / 2;
-    int m = 0;
-
-    float z = 0.125;
-    float r;
-    float v;
-
     while(d > 0) {
+      z *= mNoise;
       std::uniform_real_distribution<float> noise(-z, +z);
 
       for(int x = d; x < w; x += s) {
@@ -51,7 +57,6 @@ namespace Plat
         }
       }
 
-      z /= 2;
       s /= 2;
       d /= 2;
       m  = 0;

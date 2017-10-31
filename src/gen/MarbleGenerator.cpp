@@ -12,7 +12,7 @@ namespace Plat
   void MarbleGenerator::next(Field& map) {
     const int w = map.width();
     const int h = map.height();
-    DiamondSquareGenerator noise(5, 0.1);
+    DiamondSquareGenerator noise(4, 0.3);
     noise.next(map);
 
     for(int x = 0; x < w; ++x) {

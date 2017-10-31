@@ -94,7 +94,7 @@ namespace Plat
 
   void MapWindow::genElevation(Map& mMap) {
     Plat::Field map(mMap.xbits(), mMap.ybits());
-    Plat::MarbleGenerator gen(6, 5, 4);
+    Plat::MarbleGenerator gen(6, 5, 3);
     // Plat::DiamondSquareGenerator gen(4, 0.1);
     gen.next(map);
 
@@ -108,7 +108,7 @@ namespace Plat
 
   void MapWindow::genRainfall(Map& mMap) {
     Plat::Field map(mMap.xbits(), mMap.ybits());
-    Plat::DiamondSquareGenerator gen(6, 0.1);
+    Plat::DiamondSquareGenerator gen;
     gen.next(map);
 
     for(int x = 0; x < mMap.width(); ++x) {
@@ -121,7 +121,7 @@ namespace Plat
 
   void MapWindow::genTemperature(Map& mMap) {
     Plat::Field map(mMap.xbits(), mMap.ybits());
-    Plat::DiamondSquareGenerator gen(6, 0.1);
+    Plat::DiamondSquareGenerator gen;
     gen.next(map);
 
     for(int x = 0; x < mMap.width(); ++x) {
@@ -130,6 +130,23 @@ namespace Plat
         mMap.get(x, y).temperature = v;
       }
     }
+  }
+
+  void MapWindow::setElevation(const Field& field) {
+    Map map(field.xbits(), field.ybits());
+
+    for(int x = 0; x < map.width(); ++x) {
+      for(int y = 0; y < map.height(); ++y) {
+        unsigned char v = 255 * field.get(x, y);
+        map.get(x, y).elevation = v;
+      }
+    }
+
+    genTemperature(map);
+    genRainfall(map);
+    genBiome(map);
+
+    emit(generated(map));
   }
 
   // void MapWindow::load() {

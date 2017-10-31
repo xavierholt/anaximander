@@ -10,7 +10,7 @@ namespace Plat
     int   mSize;
     float mNoise;
   public:
-    DiamondSquareGenerator(int size, float noise);
+    DiamondSquareGenerator(int size = 6, float noise = 0.5);
     void next(Field& map);
   };
 }

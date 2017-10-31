@@ -8,24 +8,14 @@
 namespace Plat
 {
   DiamondSquareEditor::DiamondSquareEditor() {
-    mSize = new QSpinBox;
-    mSize->setMinimum(0);
-    mSize->setMaximum(9);
-
-    mNoise = new QDoubleSpinBox;
-    mNoise->setMinimum(0);
-    mNoise->setMaximum(1);
-
-    QFormLayout* layout = new QFormLayout;
-    layout->addRow("Size",  mSize);
-    layout->addRow("Noise", mNoise);
-    this->setLayout(layout);
+    mSize  = addi("Size",  0,   6, 12,    1);
+    mNoise = addf("Noise", 0, 0.5,  1, 0.05);
   }
 
   void DiamondSquareEditor::next(Field& map) {
     int   size  = mSize->value();
-    float noise = mNoise->value();
-    DiamondSquareGenerator gen(size, noise);
+    float decay = mNoise->value();
+    DiamondSquareGenerator gen(size, decay);
     gen.next(map);
   }
 }

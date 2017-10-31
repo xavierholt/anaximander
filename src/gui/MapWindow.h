@@ -29,6 +29,7 @@ namespace Plat
 
   public slots:
     void generate(int xbits, int ybits);
+    void setElevation(const Field& map);
     // void load();
     // void save();
 
