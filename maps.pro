@@ -17,6 +17,7 @@ HEADERS += \
   src/gen/DiamondSquareGenerator.h \
   src/gen/FieldGenerator.h \
   src/gen/MarbleGenerator.h \
+  src/gen/PerlinGenerator.h \
   src/gen/StarOfDavidGenerator.h \
   src/gen/VoronoiGenerator.h \
   src/gen/WorleyGenerator.h \
@@ -44,6 +45,7 @@ SOURCES += \
   src/gen/DiamondSquareGenerator.cpp \
   src/gen/FieldGenerator.cpp \
   src/gen/MarbleGenerator.cpp \
+  src/gen/PerlinGenerator.cpp \
   src/gen/StarOfDavidGenerator.cpp \
   src/gen/VoronoiGenerator.cpp \
   src/gen/WorleyGenerator.cpp \

@@ -8,6 +8,7 @@
 
 #include "../gen/DiamondSquareGenerator.h"
 #include "../gen/MarbleGenerator.h"
+#include "../gen/PerlinGenerator.h"
 #include "../gen/StarOfDavidGenerator.h"
 #include "../gen/VoronoiGenerator.h"
 #include "../gen/WorleyGenerator.h"
@@ -96,8 +97,9 @@ namespace Plat
   void MapWindow::genElevation(Map& mMap) {
     Plat::Field map(mMap.xbits(), mMap.ybits());
     // Plat::MarbleGenerator gen(6, 5, 3);
+    Plat::PerlinGenerator gen(6);
     // Plat::DiamondSquareGenerator gen(4, 0.1);
-    Plat::VoronoiGenerator gen(0.01);
+    // Plat::VoronoiGenerator gen(0.01);
     // Plat::WorleyGenerator gen(5, 1);
     gen.next(map);
 
