@@ -18,6 +18,10 @@ namespace Plat
         return mPoint;
       }
 
+      int& operator [] (int i) {
+        return mPoint[i];
+      }
+
       int operator [] (int i) const {
         return mPoint[i];
       }
@@ -42,7 +46,7 @@ namespace Plat
     n = std::min(n, map.ybits());
     int s = 1 << n;
 
-    KD::Tree<KD::Core<2,Item*,Point> > tree(
+    KD::Wrap<KD::Core<2,Item*,Point> > tree(
       Point(0, map.width()),
       Point(0, map.height())
     );

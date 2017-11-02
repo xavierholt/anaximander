@@ -18,6 +18,10 @@ namespace Plat
         return mPoint;
       }
 
+      int& operator [] (int i) {
+        return mPoint[i];
+      }
+
       int operator [] (int i) const {
         return mPoint[i];
       }
@@ -38,7 +42,7 @@ namespace Plat
     std::uniform_int_distribution<int>    dy(0, map.height());
     std::uniform_real_distribution<float> dv(0, 1);
 
-    KD::Tree<KD::Core<2,Item*,Point> > tree(
+    KD::Wrap<KD::Core<2,Item*,Point> > tree(
       Point(0, map.width()),
       Point(0, map.height())
     );
