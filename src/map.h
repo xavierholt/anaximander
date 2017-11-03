@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cstring>
+#include <ostream>
 
 #include <QDataStream>
 #include <QFile>
@@ -28,6 +29,10 @@ namespace Plat
 
     int operator [] (int index) const {
       return coordinates[index];
+    }
+
+    friend std::ostream& operator << (std::ostream& stream, const Point& point) {
+      return stream << '(' << point.x << ", " << point.y << ')';
     }
   };
 
@@ -131,6 +136,14 @@ namespace Plat
 
     int ybits() const {
       return mYBits;
+    }
+
+    int xdiff(int x1, int x2) const {
+      return ((x1 - x2 + mWidth / 2) & mXMask) - mWidth / 2;
+    }
+
+    int ydiff(int y1, int y2) const {
+      return ((y1 - y2 + mHeight / 2) & mYMask) - mHeight / 2;
     }
 
     // Grid& operator = (Grid&& other) {

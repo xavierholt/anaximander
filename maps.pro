@@ -9,7 +9,7 @@ MOC_DIR     = $${DESTDIR}/.moc
 RCC_DIR     = $${DESTDIR}/.rcc
 UI_DIR      = $${DESTDIR}/.ui
 
-
+HEADERS += $$files(src/gen/kd/src/*.h, true)
 HEADERS += \
   src/map.h \
   src/Biome.h \

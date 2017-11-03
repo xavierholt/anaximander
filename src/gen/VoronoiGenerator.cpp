@@ -43,8 +43,8 @@ namespace Plat
     std::uniform_real_distribution<float> dv(0, 1);
 
     KD::Wrap<KD::Core<2,Item*,Point> > tree(
-      Point(0, map.width()),
-      Point(0, map.height())
+      Point(0, 0),
+      Point(map.width(), map.height())
     );
 
     Item* items = new Item[npoints];

@@ -47,8 +47,8 @@ namespace Plat
     int s = 1 << n;
 
     KD::Wrap<KD::Core<2,Item*,Point> > tree(
-      Point(0, map.width()),
-      Point(0, map.height())
+      Point(0, 0),
+      Point(map.width(), map.height())
     );
 
     int i = 0;
@@ -71,8 +71,8 @@ namespace Plat
     for(int x = 0; x < w; ++x) {
       for(int y = 0; y < h; ++y) {
         Item* nearest = tree.nearest(Point(x, y));
-        float dx = x - nearest->point().x;
-        float dy = y - nearest->point().y;
+        float dx = map.xdiff(x, nearest->point().x);
+        float dy = map.ydiff(y, nearest->point().y);
         float d  = std::sqrt(dx * dx + dy * dy);
         map.get(x, y) = m * (float(s) / (float(s) + d) - b);
       }
