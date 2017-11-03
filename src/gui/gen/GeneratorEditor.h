@@ -1,7 +1,6 @@
 #ifndef PLAT_GENERATOREDITOR_H
 #define PLAT_GENERATOREDITOR_H
 
-#include "../../map.h"
 #include <QWidget>
 
 class QDoubleSpinBox;
@@ -10,6 +9,8 @@ class QSpinBox;
 
 namespace Plat
 {
+  class Field;
+
   class GeneratorEditor: public QWidget {
     Q_OBJECT
   protected:

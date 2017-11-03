@@ -9,6 +9,7 @@ class QDoubleSpinBox;
 namespace Plat
 {
   class DiamondSquareEditor: public GeneratorEditor {
+    Q_OBJECT
   protected:
     QSpinBox*       mSize;
     QDoubleSpinBox* mNoise;

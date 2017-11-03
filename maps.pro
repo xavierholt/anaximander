@@ -9,35 +9,11 @@ MOC_DIR     = $${DESTDIR}/.moc
 RCC_DIR     = $${DESTDIR}/.rcc
 UI_DIR      = $${DESTDIR}/.ui
 
+HEADERS += $$files(src/*.h, false)
+HEADERS += $$files(src/gen/*.h, false)
 HEADERS += $$files(src/gen/kd/src/*.h, true)
-HEADERS += \
-  src/map.h \
-  src/Biome.h \
-  src/Histogram.h \
-  src/gen/DiamondSquareGenerator.h \
-  src/gen/FieldGenerator.h \
-  src/gen/MarbleGenerator.h \
-  src/gen/PerlinGenerator.h \
-  src/gen/StarOfDavidGenerator.h \
-  src/gen/VoronoiGenerator.h \
-  src/gen/WorleyGenerator.h \
-  src/gui/EditPanel.h \
-  src/gui/MainPanel.h \
-  src/gui/MapWindow.h \
-  src/gui/SidePanel.h \
-  src/gui/StatPanel.h \
-  src/gui/bar/BiomeHistogram.h \
-  src/gui/bar/ElevationHistogram.h \
-  src/gui/bar/RainfallHistogram.h \
-  src/gui/bar/TemperatureHistogram.h \
-  src/gui/bar/HistogramViewer.h \
-  src/gui/gen/DiamondSquareEditor.h \
-  src/gui/gen/GeneratorEditor.h \
-  src/gui/map/BiomeViewer.h \
-  src/gui/map/ElevationViewer.h \
-  src/gui/map/RainfallViewer.h \
-  src/gui/map/TemperatureViewer.h \
-  src/gui/map/MapViewer.h
+HEADERS += $$files(src/gui/*.h, true)
+
 SOURCES += \
   src/main.cpp \
   src/Biome.cpp \

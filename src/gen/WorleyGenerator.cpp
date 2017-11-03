@@ -1,5 +1,6 @@
 #include "WorleyGenerator.h"
 
+#include "../Point.h"
 #include "kd/src/tree.h"
 
 namespace Plat

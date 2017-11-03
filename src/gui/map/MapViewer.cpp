@@ -1,6 +1,6 @@
 #include "MapViewer.h"
 
-#include "../../map.h"
+#include "../../Map.h"
 
 #include <QLabel>
 

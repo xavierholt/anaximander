@@ -1,7 +1,6 @@
 #ifndef PLAT_HISTOGRAMVIEWER_H
 #define PLAT_HISTOGRAMVIEWER_H
 
-#include "../../map.h"
 #include "../../Histogram.h"
 
 #include <QWidget>
@@ -11,6 +10,8 @@ class QPaintEvent;
 
 namespace Plat
 {
+  class Map;
+
   class HistogramViewer: public QWidget {
   protected:
     Histogram mHistogram;

@@ -3,8 +3,9 @@
 #include "MainPanel.h"
 #include "SidePanel.h"
 
-#include "../map.h"
 #include "../Biome.h"
+#include "../Field.h"
+#include "../Map.h"
 
 #include "../gen/DiamondSquareGenerator.h"
 #include "../gen/MarbleGenerator.h"
@@ -14,13 +15,6 @@
 #include "../gen/WorleyGenerator.h"
 
 #include <QHBoxLayout>
-#include <QImage>
-#include <QLabel>
-#include <QPixmap>
-#include <QPushButton>
-#include <QScrollArea>
-#include <QTabWidget>
-#include <QVBoxLayout>
 
 namespace Plat
 {
@@ -100,7 +94,7 @@ namespace Plat
     // Plat::PerlinGenerator gen(6);
     // Plat::DiamondSquareGenerator gen(4, 0.1);
     // Plat::VoronoiGenerator gen(0.005);
-    Plat::WorleyGenerator gen(5, 1);
+    Plat::WorleyGenerator gen(6, 1);
     gen.next(map);
 
     for(int x = 0; x < mMap.width(); ++x) {
