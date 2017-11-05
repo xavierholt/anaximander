@@ -24,6 +24,7 @@ SOURCES += \
   src/gen/PerlinGenerator.cpp \
   src/gen/StarOfDavidGenerator.cpp \
   src/gen/VoronoiGenerator.cpp \
+  src/gen/WhirlyGenerator.cpp \
   src/gen/WorleyGenerator.cpp \
   src/gui/EditPanel.cpp \
   src/gui/MainPanel.cpp \

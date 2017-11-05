@@ -12,6 +12,7 @@
 #include "../gen/PerlinGenerator.h"
 #include "../gen/StarOfDavidGenerator.h"
 #include "../gen/VoronoiGenerator.h"
+#include "../gen/WhirlyGenerator.h"
 #include "../gen/WorleyGenerator.h"
 
 #include <QHBoxLayout>
@@ -94,7 +95,8 @@ namespace Plat
     // Plat::PerlinGenerator gen(6);
     // Plat::DiamondSquareGenerator gen(4, 0.1);
     // Plat::VoronoiGenerator gen(0.005);
-    Plat::WorleyGenerator gen(6, 1);
+    Plat::WhirlyGenerator gen(6, 1);
+    // Plat::WorleyGenerator gen(6, 1);
     gen.next(map);
 
     for(int x = 0; x < mMap.width(); ++x) {

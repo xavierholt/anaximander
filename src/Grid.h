@@ -81,7 +81,7 @@ namespace Plat
     }
 
     int xdiff(int a, int b) const {
-      return ((a - b + mWidth / 2) & mXMask) - mWidth / 2;
+      return ((b - a + mWidth / 2) & mXMask) - mWidth / 2;
     }
 
     int ybits() const {
@@ -89,7 +89,7 @@ namespace Plat
     }
 
     int ydiff(int a, int b) const {
-      return ((a - b + mHeight / 2) & mYMask) - mHeight / 2;
+      return ((b - a + mHeight / 2) & mYMask) - mHeight / 2;
     }
   };
 }

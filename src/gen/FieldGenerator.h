@@ -17,6 +17,16 @@ namespace Plat
     FieldGenerator();
     FieldGenerator(unsigned int seed);
     virtual void next(Field& map) = 0;
+
+    float smoothstep(float a, float b, float p) {
+      p = (p * p) * (3 - 2 * p);
+      return (1-p) * a + p * b;
+    }
+
+    float smootherstep(float a, float b, float p) {
+      p = (p * p * p) * (p * (p * 6 - 15) + 10);
+      return (1-p) * a + p * b;
+    }
   };
 }
 
