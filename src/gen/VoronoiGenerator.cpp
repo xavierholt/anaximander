@@ -1,6 +1,9 @@
 #include "VoronoiGenerator.h"
 
+#include "../Point.h"
 #include "kd/src/tree.h"
+
+#include "../core/FloatConstant.h"
 
 namespace Plat
 {
@@ -18,6 +21,10 @@ namespace Plat
         return mPoint;
       }
 
+      int& operator [] (int i) {
+        return mPoint[i];
+      }
+
       int operator [] (int i) const {
         return mPoint[i];
       }
@@ -29,18 +36,26 @@ namespace Plat
   }
 
   VoronoiGenerator::VoronoiGenerator(float density) {
-    mDensity = density;
+    mDensity = floatParam("density");
+
+    mDensity->setValue(new FloatConstant(density));
+  }
+
+  const char* VoronoiGenerator::name() const {
+    return VoronoiGenerator::TYPENAME;
   }
 
   void VoronoiGenerator::next(Field& map) {
-    int npoints = mDensity * map.area();
+    float density = mDensity->value()->get();
+    int   npoints = density * map.area();
+
     std::uniform_int_distribution<int>    dx(0, map.width());
     std::uniform_int_distribution<int>    dy(0, map.height());
     std::uniform_real_distribution<float> dv(0, 1);
 
-    KD::Tree<KD::Core<2,Item*,Point> > tree(
-      Point(0, map.width()),
-      Point(0, map.height())
+    KD::Wrap<KD::Core<2,Item*,Point> > tree(
+      Point(0, 0),
+      Point(map.width(), map.height())
     );
 
     Item* items = new Item[npoints];

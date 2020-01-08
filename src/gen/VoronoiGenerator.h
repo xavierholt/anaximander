@@ -6,10 +6,13 @@
 namespace Plat
 {
   class VoronoiGenerator: public FieldGenerator {
-  protected:
-    float mDensity;
   public:
-    VoronoiGenerator(float density);
+    static constexpr const char* TYPENAME = "field/voronoi";
+  protected:
+    FloatParam* mDensity;
+  public:
+    VoronoiGenerator(float density = 0.001);
+    virtual const char* name() const;
     void next(Field& map);
   };
 }

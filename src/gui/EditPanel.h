@@ -4,19 +4,25 @@
 #include <QWidget>
 
 class QSpinBox;
+class QTreeView;
 
 namespace Plat
 {
   class Field;
+  class WorldParam;
+  class WorldValue;
+
   class MapWindow;
-  class GeneratorEditor;
 
   class EditPanel: public QWidget {
     Q_OBJECT
   protected:
-    QSpinBox*        mMapWidth;
-    QSpinBox*        mMapHeight;
-    GeneratorEditor* mGenEditor;
+    QSpinBox*   mMapWidth;
+    QSpinBox*   mMapHeight;
+
+    QTreeView*  mTreeView;
+    WorldParam* mRoot;
+    WorldValue* mWorld;
   public:
     EditPanel(MapWindow* window);
   public slots:

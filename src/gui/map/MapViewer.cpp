@@ -1,6 +1,6 @@
 #include "MapViewer.h"
 
-#include "../../map.h"
+#include "../../Map.h"
 
 #include <QLabel>
 
@@ -10,6 +10,8 @@ namespace Plat
     setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     setFrameStyle(QFrame::NoFrame);
     setWidget(mLabel = new QLabel);
+
+    setStyleSheet("background-color:transparent;");
   }
 
   void MapViewer::clear() {

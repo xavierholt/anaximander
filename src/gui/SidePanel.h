@@ -17,6 +17,7 @@ namespace Plat
   protected:
     EditPanel*   mEditPanel;
     StatPanel*   mStatPanel;
+    QPushButton* mPreview;
     QPushButton* mGenerate;
   public:
     SidePanel(MapWindow* window);

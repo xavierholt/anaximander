@@ -1,4 +1,5 @@
 #include "ElevationHistogram.h"
+#include "../../Map.h"
 
 #include <QPainter>
 

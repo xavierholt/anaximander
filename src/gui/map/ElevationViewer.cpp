@@ -1,6 +1,6 @@
 #include "ElevationViewer.h"
 
-#include "../../map.h"
+#include "../../Map.h"
 
 namespace Plat
 {

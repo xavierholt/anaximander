@@ -1,7 +1,7 @@
 #include "RainfallHistogram.h"
+#include "../../Map.h"
 
 #include <QPainter>
-#include <iostream>
 
 namespace Plat
 {
@@ -18,7 +18,6 @@ namespace Plat
     qreal w = width() / qreal(256);
     for(int i = 0; i < 256; ++i) {
       qreal h = qreal(mHistogram[i]) / mHistogram.maxbar() * height();
-      // std::cout << i << " -> " << h << '\n';
       painter.fillRect(w * i, height() - h, w * (i + 1), height(), QColor(128, 128, i));
       painter.fillRect(w * i, 0, w * (i + 1), height() - h, Qt::black);
     }

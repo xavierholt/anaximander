@@ -1,6 +1,6 @@
 #include "TemperatureViewer.h"
 
-#include "../../map.h"
+#include "../../Map.h"
 
 namespace Plat
 {

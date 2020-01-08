@@ -1,4 +1,5 @@
 #include "TemperatureHistogram.h"
+#include "../../Map.h"
 
 #include <QPainter>
 

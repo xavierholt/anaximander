@@ -1,16 +1,12 @@
 #ifndef PLAT_GUI_MAPWINDOW_H
 #define PLAT_GUI_MAPWINDOW_H
 
-#include "../map.h"
-
 #include <QWidget>
-
-class QHBoxLayout;
-class QPushButton;
-class QVBoxLayout;
 
 namespace Plat
 {
+  class Map;
+  class Field;
   class MainPanel;
   class SidePanel;
 

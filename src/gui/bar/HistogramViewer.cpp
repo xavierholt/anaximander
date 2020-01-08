@@ -1,7 +1,6 @@
 #include "HistogramViewer.h"
 
 #include <QPainter>
-#include <iostream>
 
 namespace Plat
 {
@@ -16,8 +15,6 @@ namespace Plat
 
   void HistogramViewer::paintEvent(QPaintEvent*) {
     QPainter painter(this);
-    // std::cout << width() << 'x' << height() << '\n';
-    // painter.fillRect(0, 0, width(), height(), Qt::black);
     paint(painter);
   }
 

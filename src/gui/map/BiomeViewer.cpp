@@ -1,8 +1,7 @@
 #include "BiomeViewer.h"
 
-#include "../../map.h"
 #include "../../Biome.h"
-
+#include "../../Map.h"
 
 namespace Plat
 {

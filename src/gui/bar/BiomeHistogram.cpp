@@ -1,6 +1,6 @@
 #include "BiomeHistogram.h"
-
 #include "../../Biome.h"
+#include "../../Map.h"
 
 #include <QPainter>
 
