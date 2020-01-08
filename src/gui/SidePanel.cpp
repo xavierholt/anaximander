@@ -16,13 +16,14 @@ namespace Plat
     tabs->addTab(mEditPanel = new EditPanel(window), "Generation");
     tabs->addTab(mStatPanel = new StatPanel(window), "Statistics");
 
+    mPreview  = new QPushButton("Preview");
     mGenerate = new QPushButton("Generate");
     connect(mGenerate, SIGNAL(clicked()), mEditPanel, SLOT(generate()));
 
     layout->addWidget(tabs);
+    layout->addWidget(mPreview);
     layout->addWidget(mGenerate);
-    // layout->setContentsMargins(0, 0, 0, 0);
-    // setContentsMargins(0, 0, 0, 0);
+    layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
   }
 }

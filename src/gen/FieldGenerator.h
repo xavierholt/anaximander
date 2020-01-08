@@ -4,10 +4,12 @@
 #include <random>
 
 #include "../Field.h"
+#include "../core/FieldValue.h"
+#include "../core/Param.h"
 
 namespace Plat
 {
-  class FieldGenerator {
+  class FieldGenerator: public FieldValue {
   protected:
     static std::default_random_engine cGenerator;
   protected:
@@ -16,7 +18,9 @@ namespace Plat
   public:
     FieldGenerator();
     FieldGenerator(unsigned int seed);
+
     virtual void next(Field& map) = 0;
+    virtual void generate(int xbits, int ybits);
 
     float smoothstep(float a, float b, float p) {
       p = (p * p) * (3 - 2 * p);

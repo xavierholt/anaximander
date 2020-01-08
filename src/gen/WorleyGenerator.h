@@ -6,11 +6,14 @@
 namespace Plat
 {
   class WorleyGenerator: public FieldGenerator {
-  protected:
-    int mSize;
-    int mCount;
   public:
-    WorleyGenerator(int size, int count);
+    static constexpr const char* TYPENAME = "field/worley";
+  protected:
+    IntParam* mScale;
+    IntParam* mCount;
+  public:
+    WorleyGenerator(int scale = 5, int count = 5);
+    virtual const char* name() const;
     void next(Field& map);
   };
 }

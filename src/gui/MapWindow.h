@@ -3,10 +3,6 @@
 
 #include <QWidget>
 
-class QHBoxLayout;
-class QPushButton;
-class QVBoxLayout;
-
 namespace Plat
 {
   class Map;

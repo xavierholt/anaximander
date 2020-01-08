@@ -56,6 +56,10 @@ namespace Plat
     mCount = count;
   }
 
+  const char* WhirlyGenerator::name() const {
+    return WhirlyGenerator::TYPENAME;
+  }
+
   void WhirlyGenerator::next(Field& map) {
     const int w = map.width();
     const int h = map.height();
@@ -71,14 +75,14 @@ namespace Plat
     );
 
     int i = 0;
-    Item* items = new Item[h/s * w/s * mCount];
+    std::vector<Item> items(h/s * w/s * mCount);
     std::uniform_int_distribution<int>   d(0, s);
     std::uniform_int_distribution<float> v(0, 2*M_PI);
 
     for(int x = 0; x < w; x += s) {
       for(int y = 0; y < h; y += s) {
         for(int z = 0; z < mCount; ++z) {
-          items[i] = Item(x + d(mGenerator), y + d(mGenerator), v(mGenerator));
+          items[i] = Item(x + d(mGenerator), y + d(mGenerator), 1 - (rand() & 2));
           tree.insert(&items[i]);
           i += 1;
         }
@@ -87,17 +91,24 @@ namespace Plat
 
     for(int x = 0; x < w; ++x) {
       for(int y = 0; y < h; ++y) {
-        Item* nearest = tree.nearest(Point(x, y));
+        std::vector<Item*> nearest = tree.nearest(Point(x, y), 9);
 
-        float dx = map.xdiff(x, nearest->x);
-        float dy = map.ydiff(y, nearest->y);
-        float d  = std::sqrt(dx * dx + dy * dy);
-        float a  = std::atan2(dx, dy) + nearest->value;
+        float v = 0;
+        float w = 0;
 
-        map.get(x, y) = (std::sin(a + d) + 1) / 2;
+        for(Item* item: nearest) {
+          float dx = map.xdiff(x, item->x);
+          float dy = map.ydiff(y, item->y);
+          float d  = std::sqrt(dx * dx + dy * dy);
+          float a  = std::atan2(dy, dx);
+
+          float f = std::pow(1.1f, -d);
+          v += f * (std::sin(a + d / 2) + 1) / 2;
+          w += f;
+        }
+
+        map.get(x, y) = v / w;
       }
     }
-
-    delete [] items;
   }
 }

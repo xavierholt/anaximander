@@ -1,16 +1,24 @@
 #include "PerlinGenerator.h"
 
+#include "../core/Param.h"
+#include "../core/IntConstant.h"
+
 namespace Plat
 {
-  PerlinGenerator::PerlinGenerator(int size) {
-    mSize = size;
+  PerlinGenerator::PerlinGenerator(int scale) {
+    mScale = intParam("scale");
+    mScale->setValue(new IntConstant(scale));
+  }
+
+  const char* PerlinGenerator::name() const {
+    return PerlinGenerator::TYPENAME;
   }
 
   void PerlinGenerator::next(Field& map) {
     const int w = map.width();
     const int h = map.height();
 
-    int n = mSize;
+    int n = mScale->value()->get();
     n = std::min(n, map.xbits());
     n = std::min(n, map.ybits());
     int s = 1 << n;

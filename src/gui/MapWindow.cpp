@@ -16,17 +16,23 @@
 #include "../gen/WorleyGenerator.h"
 
 #include <QHBoxLayout>
+#include <QSplitter>
 
 namespace Plat
 {
   MapWindow::MapWindow(QWidget* parent): QWidget(parent) {
     QHBoxLayout* layout = new QHBoxLayout;
-    layout->addWidget(mMainPanel = new MainPanel(this), 1);
-    layout->addWidget(mSidePanel = new SidePanel(this), 0);
+    QSplitter* splitter = new QSplitter(this);
+
+    splitter->addWidget(mMainPanel = new MainPanel(this));
+    splitter->addWidget(mSidePanel = new SidePanel(this));
+
+    layout->addWidget(splitter);
+    // layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
 
     setWindowTitle("Map Viewer");
-    generate(8, 8);
+    generate(9, 9);
   }
 
   void MapWindow::generate(int xbits, int ybits) {
@@ -91,11 +97,11 @@ namespace Plat
 
   void MapWindow::genElevation(Map& mMap) {
     Plat::Field map(mMap.xbits(), mMap.ybits());
-    // Plat::MarbleGenerator gen(6, 5, 3);
+    Plat::MarbleGenerator gen(6, 5, 3);
     // Plat::PerlinGenerator gen(6);
     // Plat::DiamondSquareGenerator gen(4, 0.1);
     // Plat::VoronoiGenerator gen(0.005);
-    Plat::WhirlyGenerator gen(6, 1);
+    // Plat::WhirlyGenerator gen(6, 1);
     // Plat::WorleyGenerator gen(6, 1);
     gen.next(map);
 
@@ -136,9 +142,20 @@ namespace Plat
   void MapWindow::setElevation(const Field& field) {
     Map map(field.xbits(), field.ybits());
 
+    float min = +std::numeric_limits<float>::infinity();
+    float max = -std::numeric_limits<float>::infinity();
+
     for(int x = 0; x < map.width(); ++x) {
       for(int y = 0; y < map.height(); ++y) {
-        unsigned char v = 255 * field.get(x, y);
+        float v = field.get(x, y);
+        min = std::min(min, v);
+        max = std::max(max, v);
+      }
+    }
+
+    for(int x = 0; x < map.width(); ++x) {
+      for(int y = 0; y < map.height(); ++y) {
+        unsigned char v = 255 * (field.get(x, y) - min) / (max - min);
         map.get(x, y).elevation = v;
       }
     }

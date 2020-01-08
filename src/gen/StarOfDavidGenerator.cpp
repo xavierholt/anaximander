@@ -7,6 +7,10 @@ namespace Plat
     mNoise   = noise;
   }
 
+  const char* StarOfDavidGenerator::name() const {
+    return StarOfDavidGenerator::TYPENAME;
+  }
+
   void StarOfDavidGenerator::next(Field& map) {
     std::uniform_real_distribution<float> distribution(0, 1);
     const int w = map.width();

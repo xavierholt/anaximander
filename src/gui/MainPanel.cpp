@@ -5,6 +5,7 @@
 #include "map/ElevationViewer.h"
 #include "map/RainfallViewer.h"
 #include "map/TemperatureViewer.h"
+#include "SurfaceViewer.h"
 
 namespace Plat
 {
@@ -13,6 +14,7 @@ namespace Plat
     addTab(mTemperature = new TemperatureViewer, "Temperature");
     addTab(mRainfall    = new RainfallViewer,    "Rainfall");
     addTab(mBiome       = new BiomeViewer,       "Biomes");
+    addTab(mSurface     = new SurfaceViewer,     "Surface");
 
     connect(window, SIGNAL(generated(Map)), this, SLOT(update(Map)));
   }
@@ -22,5 +24,6 @@ namespace Plat
     mTemperature->update(map);
     mRainfall->update(map);
     mBiome->update(map);
+    mSurface->update(map);
   }
 }

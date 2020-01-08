@@ -6,10 +6,13 @@
 namespace Plat
 {
   class PerlinGenerator: public FieldGenerator {
-  protected:
-    int mSize;
   public:
-    PerlinGenerator(int size = 5);
+    static constexpr const char* TYPENAME = "field/perlin";
+  protected:
+    IntParam* mScale;
+  public:
+    PerlinGenerator(int scale = 5);
+    virtual const char* name() const;
     void next(Field& map);
   };
 }

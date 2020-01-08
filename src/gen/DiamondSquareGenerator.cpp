@@ -1,17 +1,30 @@
 #include "DiamondSquareGenerator.h"
 
+#include "../core/FieldConstant.h"
+#include "../core/FloatConstant.h"
+#include "../core/IntConstant.h"
+
 namespace Plat
 {
-  DiamondSquareGenerator::DiamondSquareGenerator(int size, float noise) {
-    mSize  = size;
-    mNoise = noise;
+  DiamondSquareGenerator::DiamondSquareGenerator(int scale, float noise): random(42) {
+    mScale    =   intParam("scale");
+    mVariance = fieldParam("variance");
+    mFalloff  = floatParam("falloff");
+
+    mScale->setValue(new IntConstant(scale));
+    mVariance->setValue(new FieldConstant(0.25f));
+    mFalloff->setValue(new FloatConstant(noise));
+  }
+
+  const char* DiamondSquareGenerator::name() const {
+    return DiamondSquareGenerator::TYPENAME;
   }
 
   void DiamondSquareGenerator::next(Field& map) {
     const int w = map.width();
     const int h = map.height();
 
-    int n = mSize;
+    int n = mScale->value()->get();
     n = std::min(n, map.xbits());
     n = std::min(n, map.ybits());
 
@@ -19,20 +32,23 @@ namespace Plat
     int d = s / 2;
     int m = 0;
 
-    // Ensure that the possible result values cover the range [0, 1] exactly:
-    float z = (mNoise == 1)? 0.5 / n : (mNoise - 1) / (pow(mNoise, n) - 1) * 0.5;
+    float z = 1.0;
     float v;
 
-    std::uniform_real_distribution<float> init(0.5 - z, 0.5 + z);
+    FloatValue* falloff  = mFalloff->value();
+    FieldValue* variance = mVariance->value();
+
+    std::uniform_real_distribution<float> r(-1, +1);
     for(int x = 0; x < w; x += s) {
       for(int y = 0; y < h; y += s) {
-        map.set(x, y, init(mGenerator));
+        v = r(mGenerator) * variance->get(x, y) + 0.5;
+        map.set(x, y, v);
       }
     }
 
     while(d > 0) {
-      z *= mNoise;
-      std::uniform_real_distribution<float> r(-z, +z);
+      z *= falloff->get();
+      std::uniform_real_distribution<float> r(-1, +1);
 
       for(int x = d; x < w; x += s) {
         for(int y = d; y < h; y += s) {
@@ -40,7 +56,8 @@ namespace Plat
           v += map.get(x + d, y - d);
           v += map.get(x - d, y + d);
           v += map.get(x - d, y - d);
-          map.set(x, y, r(mGenerator) + v / 4);
+          v  = v / 4 + r(mGenerator) * z * variance->get(x, y);
+          map.set(x, y, v);
         }
       }
 
@@ -50,7 +67,8 @@ namespace Plat
           v += map.get(x - d, y + 0);
           v += map.get(x + 0, y + d);
           v += map.get(x + 0, y - d);
-          map.set(x, y, r(mGenerator) + v / 4);
+          v  = v / 4 + r(mGenerator) * z * variance->get(x, y);
+          map.set(x, y, v);
         }
       }
 
